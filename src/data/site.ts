@@ -111,7 +111,6 @@ export const menu: MenuCategory[] = [
       { id: 'latte', name: { en: 'Latte', el: 'Λάτε' } },
       { id: 'freddo-espresso', name: { en: 'Freddo espresso', el: 'Φρέντο εσπρέσσο' } },
       { id: 'freddo-cappuccino', name: { en: 'Freddo cappuccino', el: 'Φρέντο καπουτσίνο' } },
-      { id: 'cold-brew', name: { en: 'Cold brew', el: 'Cold brew' } },
     ],
   },
   {
