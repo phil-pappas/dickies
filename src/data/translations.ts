@@ -110,7 +110,7 @@ const en: Dictionary = {
   },
   menu: {
     eyebrow: 'Menu',
-    title: 'Curated, fresh, all day.',
+    title: 'Fresh made, all day.',
     subtitle:
       'A short, considered menu that changes with the season. illy coffee, microbakery breads and bright Mediterranean staples.',
     bannerAlt: 'Stack of DICKIES paper coffee cups with coffee beans.',
