@@ -98,7 +98,7 @@ const en: Dictionary = {
   },
   about: {
     eyebrow: 'About us',
-    title: 'A small bakery with a big morning.',
+    title: 'Small bakery big morning.', // \n is used to break the line
     paragraphs: [
       'DICKIES is a newly opened microbakery cafe in the heart of Sivota — built around great coffee, honest ingredients and a slow, sunlit pace.',
       'Every day we brew illy espresso, bake bread in small batches, blend fresh smoothies and juices, and put together light, bright plates of yoghurt, fruit salads and sandwiches that keep you going from breakfast to sunset.',
