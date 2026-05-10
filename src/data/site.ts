@@ -46,7 +46,7 @@ export const site = {
     region: 'Greece',
     /** Set when known. Avoid placeholders in UI; the field is rendered conditionally. */
     address: null as string | null,
-    mapsUrl: null as string | null,
+    mapsUrl: 'https://maps.app.goo.gl/1QKUrkRNVpG2wLM67',
   },
   hours: {
     open: '07:00',
@@ -57,12 +57,14 @@ export const site = {
     } satisfies Localized,
   },
   contact: {
-    phone: null as string | null,
+    phone: '+30 26650 23232',
     email: null as string | null,
   },
   social: {
-    instagram: { url: null, handle: null } satisfies SocialLink,
-    whatsapp: { url: null, handle: null } satisfies SocialLink,
+    // TODO: replace with the actual Instagram profile URL once the handle is confirmed.
+    instagram: { url: 'https://www.instagram.com/', handle: null } satisfies SocialLink,
+    // WhatsApp click-to-chat derived from the phone number above.
+    whatsapp: { url: 'https://wa.me/302665023232', handle: null } satisfies SocialLink,
   },
   /**
    * Image role map. Each role points to a file already present in `public/images/`.

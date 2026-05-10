@@ -118,7 +118,7 @@ const en: Dictionary = {
   contact: {
     eyebrow: 'Visit us',
     title: 'Find DICKIES in Sivota.',
-    subtitle: 'Drop in any morning, stay through the afternoon. We are open daily from seven to seven.',
+    subtitle: 'Drop in any morning, stay through the afternoon. We are open daily from 7 to 19.',
     locationLabel: 'Where',
     locationValue: 'Sivota, Greece',
     hoursLabel: 'Hours',
