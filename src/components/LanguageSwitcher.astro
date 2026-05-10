@@ -1,0 +1,55 @@
+---
+import { translations } from '~/data/translations';
+
+type Props = {
+  /** Visual variant. `subtle` is for footer / mobile, `default` is the header. */
+  variant?: 'default' | 'subtle';
+  class?: string;
+};
+
+const { variant = 'default', class: className = '' } = Astro.props;
+const t = translations.en.nav;
+const tEl = translations.el.nav;
+
+const base =
+  'inline-flex items-center rounded-full border text-xs font-sans font-medium tracking-brand uppercase transition-colors duration-150';
+const ring =
+  variant === 'subtle'
+    ? 'border-darkGreen/15 bg-transparent'
+    : 'border-darkGreen/15 bg-white/60 backdrop-blur-sm';
+---
+
+<div
+  class={`${base} ${ring} ${className}`}
+  role="group"
+  aria-label={t.languageLabel}
+>
+  <span class="sr-only">
+    <span data-lang="en">{t.languageLabel}:</span>
+    <span data-lang="el">{tEl.languageLabel}:</span>
+  </span>
+  <button
+    type="button"
+    data-lang-btn="en"
+    aria-pressed="true"
+    class="rounded-full px-3 py-1.5 text-darkGreen/70 aria-pressed:bg-darkGreen aria-pressed:text-eggshell hover:text-darkGreen focus-visible:outline-darkGreen"
+  >
+    {t.languageEnglish}
+  </button>
+  <button
+    type="button"
+    data-lang-btn="el"
+    aria-pressed="false"
+    class="rounded-full px-3 py-1.5 text-darkGreen/70 aria-pressed:bg-darkGreen aria-pressed:text-eggshell hover:text-darkGreen focus-visible:outline-darkGreen"
+  >
+    {t.languageGreek}
+  </button>
+</div>
+
+<style>
+  /* Tailwind doesn't ship an aria-pressed variant by default — define it here. */
+  button[aria-pressed='true'] {
+    background-color: #004b00;
+    color: #efebdd;
+  }
+</style>

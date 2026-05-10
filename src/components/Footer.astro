@@ -1,0 +1,60 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import Bilingual from './Bilingual.astro';
+import { translations } from '~/data/translations';
+import { site } from '~/data/site';
+
+const enNav = translations.en.nav;
+const elNav = translations.el.nav;
+const enFoot = translations.en.footer;
+const elFoot = translations.el.footer;
+
+const year = new Date().getFullYear();
+
+const links = [
+  { href: '#home', en: enNav.home, el: elNav.home },
+  { href: '#about', en: enNav.about, el: elNav.about },
+  { href: '#menu', en: enNav.menu, el: elNav.menu },
+  { href: '#contact', en: enNav.contact, el: elNav.contact },
+];
+---
+
+<footer class="border-t border-darkGreen/10 bg-eggshell">
+  <div class="container-shell flex flex-col gap-8 py-10 sm:flex-row sm:items-center sm:justify-between">
+    <div class="flex items-baseline gap-3">
+      <span class="font-display font-bold text-3xl leading-none text-darkGreen">DICKIES</span>
+      <div>
+        <p class="font-sans text-[10px] font-bold uppercase tracking-[0.22em] text-darkGreen/70">
+          Microbakery
+        </p>
+        <p class="mt-1 font-sans text-xs text-darkGreen/60">
+          <Bilingual en={enFoot.crafted} el={elFoot.crafted} />
+        </p>
+      </div>
+    </div>
+
+    <nav aria-label="Footer" class="flex flex-wrap items-center gap-x-6 gap-y-2">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class="font-sans text-sm text-darkGreen/70 hover:text-darkGreen"
+          >
+            <Bilingual en={l.en} el={l.el} />
+          </a>
+        ))
+      }
+    </nav>
+
+    <LanguageSwitcher variant="subtle" />
+  </div>
+
+  <div class="border-t border-darkGreen/10">
+    <div class="container-shell py-5">
+      <p class="font-sans text-xs text-darkGreen/55">
+        © {year} DICKIES Microbakery · {site.location.city}, {site.location.region}. {' '}
+        <Bilingual en={enFoot.rights} el={elFoot.rights} />
+      </p>
+    </div>
+  </div>
+</footer>

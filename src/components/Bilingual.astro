@@ -1,0 +1,23 @@
+---
+// Renders the EN and EL string side-by-side, wrapped in [data-lang] spans.
+// Only the active one is visible (CSS rule in global.css).
+//
+// Usage:
+//   <Bilingual en="Home" el="Αρχική" />
+//   <Bilingual en="Foo" el="Bar" tag="h1" class="display-h1" />
+
+import type { HTMLTag } from 'astro/types';
+
+type Props = {
+  en: string;
+  el: string;
+  tag?: HTMLTag;
+  class?: string;
+};
+
+const { en, el, tag: Tag = 'span', class: className } = Astro.props;
+---
+
+<Tag class={className}>
+  <span data-lang="en">{en}</span><span data-lang="el">{el}</span>
+</Tag>

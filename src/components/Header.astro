@@ -1,0 +1,115 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import Bilingual from './Bilingual.astro';
+import { translations } from '~/data/translations';
+
+const en = translations.en.nav;
+const el = translations.el.nav;
+
+const links = [
+  { href: '#home', en: en.home, el: el.home },
+  { href: '#about', en: en.about, el: el.about },
+  { href: '#menu', en: en.menu, el: el.menu },
+  { href: '#contact', en: en.contact, el: el.contact },
+];
+---
+
+<header class="sticky top-0 z-40 border-b border-darkGreen/10 bg-eggshell/85 backdrop-blur-md">
+  <div class="container-shell flex h-16 items-center justify-between gap-4 sm:h-20">
+    <a
+      href="#home"
+      class="group inline-flex items-baseline gap-2 leading-none text-darkGreen"
+      aria-label="dickies Microbakery — home"
+    >
+      <span class="font-display font-bold text-3xl tracking-tight transition-colors group-hover:text-forestMoss sm:text-[2rem]">
+        DICKIES
+      </span>
+      <span class="hidden font-sans text-[10px] font-bold uppercase tracking-[0.22em] text-darkGreen/70 sm:inline">
+        Microbakery
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-8 md:flex" aria-label="Primary">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class="font-sans text-sm font-medium tracking-brand text-darkGreen/80 transition-colors duration-150 hover:text-darkGreen"
+          >
+            <Bilingual en={l.en} el={l.el} />
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-2 sm:gap-3">
+      <LanguageSwitcher class="hidden sm:inline-flex" />
+
+      <button
+        type="button"
+        data-menu-toggle
+        aria-controls="mobile-nav"
+        aria-expanded="false"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-darkGreen/15 bg-white/60 text-darkGreen md:hidden"
+      >
+        <span class="sr-only">
+          <span data-lang="en">{en.openMenu}</span>
+          <span data-lang="el">{el.openMenu}</span>
+        </span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-5 w-5"
+          aria-hidden="true"
+        >
+          <line x1="4" y1="7" x2="20" y2="7" />
+          <line x1="4" y1="12" x2="20" y2="12" />
+          <line x1="4" y1="17" x2="20" y2="17" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  {/* Mobile drawer. Toggled by [data-menu-toggle] in BaseLayout. */}
+  <div
+    id="mobile-nav"
+    data-open="false"
+    class="md:hidden"
+    aria-label="Mobile menu"
+  >
+    <div class="mobile-panel border-t border-darkGreen/10 bg-eggshell px-5 py-6">
+      <nav class="flex flex-col gap-1" aria-label="Mobile primary">
+        {
+          links.map((l) => (
+            <a
+              href={l.href}
+              class="rounded-xl px-3 py-3 font-sans text-base font-medium text-darkGreen hover:bg-white"
+            >
+              <Bilingual en={l.en} el={l.el} />
+            </a>
+          ))
+        }
+      </nav>
+      <div class="mt-5 flex items-center justify-between border-t border-darkGreen/10 pt-5">
+        <span class="font-sans text-xs uppercase tracking-brand text-darkGreen/60">
+          <Bilingual en={en.languageLabel} el={el.languageLabel} />
+        </span>
+        <LanguageSwitcher variant="subtle" />
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  #mobile-nav .mobile-panel {
+    display: none;
+  }
+  #mobile-nav[data-open='true'] .mobile-panel {
+    display: block;
+  }
+</style>

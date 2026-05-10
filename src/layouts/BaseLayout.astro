@@ -1,0 +1,226 @@
+---
+import '~/styles/global.css';
+import { translations, defaultLang } from '~/data/translations';
+import { site } from '~/data/site';
+
+type Props = {
+  /** Optional override; defaults to the dictionary value. */
+  title?: string;
+  /** Optional override; defaults to the dictionary value. */
+  description?: string;
+  /** Canonical URL placeholder; the real domain can be set when known. */
+  canonical?: string;
+};
+
+const { title, description, canonical } = Astro.props;
+
+const enMeta = translations.en.meta;
+const elMeta = translations.el.meta;
+
+const pageTitle = title ?? enMeta.title;
+const pageDescription = description ?? enMeta.description;
+const ogImage = site.images.productWide;
+---
+
+<!doctype html>
+<html lang={defaultLang} data-lang={defaultLang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#efebdd" />
+    <meta name="color-scheme" content="light" />
+
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    {canonical && <link rel="canonical" href={canonical} />}
+
+    {/* Locale-specific search engine hints. The visible UI swaps in/out via data-lang. */}
+    <link rel="alternate" hreflang="en" href={canonical ?? '/'} />
+    <link rel="alternate" hreflang="el" href={canonical ?? '/'} />
+    <link rel="alternate" hreflang="x-default" href={canonical ?? '/'} />
+
+    {/* Open Graph / Twitter */}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="el_GR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
+    {/* Greek meta in addition to English defaults. */}
+    <meta name="description:el" content={elMeta.description} />
+
+    {/* Favicon: reuse the wordmark for now. */}
+    <link rel="icon" type="image/png" href={site.images.wordmark} />
+    <link rel="apple-touch-icon" href={site.images.wordmark} />
+
+    {/* LocalBusiness structured data so search engines understand the brand. */}
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'CafeOrCoffeeShop',
+        name: `${site.brand.name} ${site.brand.suffix}`,
+        description: enMeta.description,
+        image: ogImage,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: site.location.city,
+          addressCountry: 'GR',
+        },
+        servesCuisine: ['Coffee', 'Bakery', 'Sandwiches', 'Smoothies', 'Juices'],
+        openingHours: `Mo-Su ${site.hours.open}-${site.hours.close}`,
+        priceRange: '€€',
+      })}
+    />
+
+    {/* Preload the most-used font weights to keep first paint clean. */}
+    <link
+      rel="preload"
+      href="/fonts/Pacaembu-TrialNaipeFoundry/webfonts/Pacaembu-Regular-Trial.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Pacaembu-TrialNaipeFoundry/webfonts/Pacaembu-Medium-Trial.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/chantal/fonnts.com-Chantal_Bold.otf"
+      as="font"
+      type="font/otf"
+      crossorigin
+    />
+
+    {/*
+      Bilingual bootstrap.
+      Sets <html data-lang> + <html lang> as early as possible so the wrong
+      language is never visible on first paint. Persists choice in
+      localStorage. No reload, no framework.
+    */}
+    <script is:inline>
+      (function () {
+        var KEY = 'dickies-lang';
+        var supported = ['en', 'el'];
+        function pick() {
+          try {
+            var saved = localStorage.getItem(KEY);
+            if (saved && supported.indexOf(saved) !== -1) return saved;
+          } catch (_) {
+            /* localStorage unavailable */
+          }
+          var nav = (navigator.language || 'en').toLowerCase();
+          if (nav.indexOf('el') === 0 || nav.indexOf('gr') === 0) return 'el';
+          return 'en';
+        }
+        var initial = pick();
+        var root = document.documentElement;
+        root.setAttribute('data-lang', initial);
+        root.setAttribute('lang', initial);
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen bg-eggshell text-darkGreen antialiased">
+    <a
+      href="#home"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-darkGreen focus:px-4 focus:py-2 focus:text-eggshell"
+    >
+      <span data-lang="en">{translations.en.nav.skipToContent}</span>
+      <span data-lang="el">{translations.el.nav.skipToContent}</span>
+    </a>
+
+    <slot />
+
+    {/*
+      Runtime: language switching + mobile menu toggle.
+      Single delegated listener; no per-button hookup.
+    */}
+    <script is:inline>
+      (function () {
+        var KEY = 'dickies-lang';
+        var root = document.documentElement;
+
+        function applyLang(l) {
+          if (l !== 'en' && l !== 'el') l = 'en';
+          root.setAttribute('data-lang', l);
+          root.setAttribute('lang', l);
+          try {
+            localStorage.setItem(KEY, l);
+          } catch (_) {
+            /* ignore */
+          }
+          // Sync all language buttons.
+          var buttons = document.querySelectorAll('[data-lang-btn]');
+          for (var i = 0; i < buttons.length; i++) {
+            var b = buttons[i];
+            var on = b.getAttribute('data-lang-btn') === l;
+            b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          }
+        }
+
+        // Apply once on load to sync button states with the bootstrap value.
+        applyLang(root.getAttribute('data-lang') || 'en');
+
+        document.addEventListener('click', function (e) {
+          var target = e.target;
+          if (!(target instanceof Element)) return;
+
+          var langBtn = target.closest('[data-lang-btn]');
+          if (langBtn) {
+            applyLang(langBtn.getAttribute('data-lang-btn'));
+            return;
+          }
+
+          var menuBtn = target.closest('[data-menu-toggle]');
+          if (menuBtn) {
+            var panel = document.getElementById('mobile-nav');
+            if (!panel) return;
+            var open = panel.getAttribute('data-open') === 'true';
+            panel.setAttribute('data-open', open ? 'false' : 'true');
+            menuBtn.setAttribute('aria-expanded', open ? 'false' : 'true');
+            document.body.style.overflow = open ? '' : 'hidden';
+            return;
+          }
+
+          var anchor = target.closest('a[href^="#"]');
+          if (anchor) {
+            // Close mobile menu after navigating to a section.
+            var panel2 = document.getElementById('mobile-nav');
+            if (panel2 && panel2.getAttribute('data-open') === 'true') {
+              panel2.setAttribute('data-open', 'false');
+              var btn = document.querySelector('[data-menu-toggle]');
+              if (btn) btn.setAttribute('aria-expanded', 'false');
+              document.body.style.overflow = '';
+            }
+          }
+        });
+
+        // Close mobile menu on Escape.
+        document.addEventListener('keydown', function (e) {
+          if (e.key !== 'Escape') return;
+          var panel = document.getElementById('mobile-nav');
+          if (panel && panel.getAttribute('data-open') === 'true') {
+            panel.setAttribute('data-open', 'false');
+            var btn = document.querySelector('[data-menu-toggle]');
+            if (btn) {
+              btn.setAttribute('aria-expanded', 'false');
+              btn.focus();
+            }
+            document.body.style.overflow = '';
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

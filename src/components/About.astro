@@ -1,0 +1,63 @@
+---
+import Bilingual from './Bilingual.astro';
+import { translations } from '~/data/translations';
+import { site } from '~/data/site';
+
+const en = translations.en.about;
+const el = translations.el.about;
+
+const paragraphs = en.paragraphs.map((enText, i) => ({
+  en: enText,
+  el: el.paragraphs[i] ?? enText,
+}));
+---
+
+<section id="about" class="bg-white">
+  <div class="container-shell py-20 sm:py-24">
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-5">
+        <p class="eyebrow">
+          <Bilingual en={en.eyebrow} el={el.eyebrow} />
+        </p>
+        <h2 class="display-h2 mt-5">
+          <Bilingual en={en.title} el={el.title} />
+        </h2>
+      </div>
+
+      <div class="lg:col-span-7">
+        <div class="space-y-5 text-darkGreen/85">
+          {
+            paragraphs.map((p) => (
+              <p class="font-sans text-base leading-relaxed sm:text-lg">
+                <Bilingual en={p.en} el={p.el} />
+              </p>
+            ))
+          }
+        </div>
+
+        <div class="hairline mt-10 bg-freshLime/40"></div>
+
+        <figure class="mt-8">
+          <blockquote class="font-display text-3xl leading-tight text-darkGreen sm:text-4xl">
+            “<Bilingual en={en.pullQuote} el={el.pullQuote} />”
+          </blockquote>
+          <figcaption class="mt-3 font-sans text-sm uppercase tracking-brand text-forestMoss">
+            <Bilingual en={en.pullQuoteAttribution} el={el.pullQuoteAttribution} />
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <figure class="mt-14 overflow-hidden rounded-card ring-1 ring-darkGreen/10 sm:mt-20">
+      <img
+        src={site.images.aboutPair}
+        alt={en.imageAlt}
+        width="3200"
+        height="1500"
+        class="aspect-[21/10] w-full object-cover"
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+  </div>
+</section>
