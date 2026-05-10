@@ -7,79 +7,92 @@ const en = translations.en.menu;
 const el = translations.el.menu;
 ---
 
-<section id="menu" class="bg-eggshell">
-  {/* Section banner — small, editorial use of the cups + beans photograph. */}
-  <div class="container-shell pt-20 sm:pt-24">
-    <div class="grid gap-10 sm:grid-cols-12 sm:items-end">
-      <div class="sm:col-span-7">
-        <p class="eyebrow">
-          <Bilingual en={en.eyebrow} el={el.eyebrow} />
-        </p>
-        <h2 class="display-h2 mt-5">
-          <Bilingual en={en.title} el={el.title} />
-        </h2>
-        <p class="lead mt-5 max-w-prose">
-          <Bilingual en={en.subtitle} el={el.subtitle} />
-        </p>
-      </div>
-      <figure class="sm:col-span-5">
-        <div class="overflow-hidden rounded-card ring-1 ring-darkGreen/10">
-          <img
-            src={site.images.icon2}
-            alt={en.bannerAlt}
-            width="567"
-            height="789"
-            class="aspect-[5/7] w-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
+<section
+  id="menu"
+  class="relative bg-eggshell bg-[top_center] bg-cover bg-no-repeat sm:bg-center"
+  style="background-image: url('/images/dickies-croisant.jpeg');"
+>
+  {/* Eggshell wash — keeps text and cards legible over the photo on every viewport */}
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-eggshell/80"></div>
+
+  <div class="relative z-10">
+    <div class="container-shell pt-20 sm:pt-24">
+      <div class="grid gap-10 sm:grid-cols-12 sm:items-end">
+        <div class="sm:col-span-7">
+          <p class="eyebrow">
+            <Bilingual en={en.eyebrow} el={el.eyebrow} />
+          </p>
+          <h2 class="display-h2 mt-5">
+            <Bilingual en={en.title} el={el.title} />
+          </h2>
+          <p class="lead mt-5 max-w-prose">
+            <Bilingual en={en.subtitle} el={el.subtitle} />
+          </p>
         </div>
-      </figure>
+      </div>
     </div>
-  </div>
 
-  <div class="container-shell pb-20 pt-12 sm:pb-24 sm:pt-16">
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {
-        menu.map((cat) => (
-          <article class="flex h-full flex-col rounded-card bg-white p-7 shadow-card ring-1 ring-darkGreen/5 sm:p-8">
-            <header class="flex items-baseline justify-between gap-4">
-              <h3 class="display-h3">
-                <Bilingual en={cat.name.en} el={cat.name.el} />
-              </h3>
-              {cat.note && (
-                <span class="font-sans text-[11px] uppercase tracking-brand text-forestMoss">
-                  <Bilingual en={cat.note.en} el={cat.note.el} />
-                </span>
-              )}
-            </header>
+    <div class="container-shell pb-20 pt-12 sm:pb-24 sm:pt-16">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          menu.map((cat) => (
+            <article class="flex h-full flex-col rounded-card bg-white p-7 shadow-card ring-1 ring-darkGreen/5 sm:p-8">
+              <header class="flex items-center justify-between gap-4">
+                <h3 class="display-h3">
+                  <Bilingual en={cat.name.en} el={cat.name.el} />
+                </h3>
 
-            <div class="hairline mt-5"></div>
+                {cat.note && (
+                  cat.id === 'coffee' ? (
+                    /* Coffee card: replace the word "illy" with the brand logo.
+                       h-[1.2em] tracks the 11 px note font-size so the logo
+                       is never larger than the surrounding caps. */
+                    <span class="inline-flex items-center gap-1 font-sans text-[11px] uppercase tracking-brand text-forestMoss">
+                      <span data-lang="en">Brewed with</span>
+                      <span data-lang="el">Με</span>
+                      <img
+                        src={site.images.illyLogo}
+                        alt="illy"
+                        class="h-[1.2em] w-auto"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </span>
+                  ) : (
+                    <span class="font-sans text-[11px] uppercase tracking-brand text-forestMoss">
+                      <Bilingual en={cat.note.en} el={cat.note.el} />
+                    </span>
+                  )
+                )}
+              </header>
 
-            <ul class="mt-5 space-y-3">
-              {cat.items.map((item) => (
-                <li>
-                  <p class="font-sans text-base font-medium text-darkGreen">
-                    <Bilingual en={item.name.en} el={item.name.el} />
-                  </p>
-                  {item.description && (
-                    <p class="mt-0.5 font-sans text-sm text-darkGreen/65">
-                      <Bilingual en={item.description.en} el={item.description.el} />
+              <div class="hairline mt-5"></div>
+
+              <ul class="mt-5 space-y-3">
+                {cat.items.map((item) => (
+                  <li>
+                    <p class="font-sans text-base font-medium text-darkGreen">
+                      <Bilingual en={item.name.en} el={item.name.el} />
                     </p>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </article>
-        ))
-      }
-    </div>
+                    {item.description && (
+                      <p class="mt-0.5 font-sans text-sm text-darkGreen/65">
+                        <Bilingual en={item.description.en} el={item.description.el} />
+                      </p>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
 
-    <p class="mt-10 max-w-prose font-sans text-sm text-darkGreen/65">
-      <Bilingual
-        en="Selection rotates with the season. Coffee is brewed exclusively with illy beans."
-        el="Η επιλογή αλλάζει ανάλογα με την εποχή. Ο καφές παρασκευάζεται αποκλειστικά με κόκκους illy."
-      />
-    </p>
+      <p class="mt-10 max-w-prose font-sans text-sm text-darkGreen/65">
+        <Bilingual
+          en="Selection rotates with the season. Coffee is brewed exclusively with illy beans."
+          el="Η επιλογή αλλάζει ανάλογα με την εποχή. Ο καφές παρασκευάζεται αποκλειστικά με κόκκους illy."
+        />
+      </p>
+    </div>
   </div>
 </section>

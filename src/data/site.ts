@@ -84,6 +84,7 @@ export const site = {
     thankYou: '/images/thank_you_message.png', // brand reference, not rendered as content
     icon1: '/images/icon.jpg', // brand reference, not rendered as content
     icon2: '/images/icon_2.png', // brand reference, not rendered as content
+    illyLogo: '/images/illy-logo.png', // illy brand logo for Coffee card note
   },
 } as const;
 
