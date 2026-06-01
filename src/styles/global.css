@@ -6,6 +6,10 @@
    Brand fonts. Self-hosted from /public/fonts.
    Chantal -> display / headings (brushy marker style)
    Pacaembu -> body / UI (geometric sans)
+
+   Chantal ships a stylized Greek π (U+03C0) that reads like a Latin “p”.
+   Other Greek letters already fall back to the stack serif; the bundled π
+   mapping was removed from the OTF files so lowercase π matches them.
    --------------------------------------------------------------------------- */
 
 @font-face {

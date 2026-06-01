@@ -70,7 +70,7 @@ const en: Dictionary = {
   meta: {
     title: 'DICKIES Microbakery · Sivota, Greece',
     description:
-      'A new microbakery cafe in Sivota, Greece. illy coffee, fresh bread, sandwiches, smoothies, juices, fruit salads and yoghurt. Open daily 07:00 – 19:00.',
+      'A new microbakery cafe in Sivota, Greece. illy coffee, fresh bread, sandwiches, smoothies, juices and yoghurt. Open daily 07:00 – 21:00.',
   },
   nav: {
     home: 'Home',
@@ -89,10 +89,10 @@ const en: Dictionary = {
     title: 'Fresh coffee.',
     titleAccent: 'Fresh mornings.',
     subtitle:
-      'A new microbakery cafe in Sivota, brewing illy coffee and serving freshly baked bread, sandwiches, smoothies and bright all-day plates from 7 in the morning to 7 in the evening.',
+      'A new microbakery cafe in Sivota, brewing illy coffee and serving freshly baked bread, sandwiches, smoothies and bright all-day plates from 7 in the morning to 9 in the evening.',
     primaryCta: 'See the menu',
     secondaryCta: 'About us',
-    hoursBadge: 'Open 07:00 – 19:00',
+    hoursBadge: 'Open 07:00 – 21:00',
     locationBadge: 'Sivota, Greece',
     imageAlt: 'A hand opening a DICKIES bakery box of fresh donuts.',
   },
@@ -100,8 +100,8 @@ const en: Dictionary = {
     eyebrow: 'About us',
     title: 'Small bakery big morning.', // \n is used to break the line
     paragraphs: [
-      'DICKIES is a newly opened microbakery cafe in the heart of Sivota — built around great coffee, honest ingredients and a slow, sunlit pace.',
-      'Every day we brew illy espresso, bake bread in small batches, blend fresh smoothies and juices, and put together light, bright plates of yoghurt, fruit salads and sandwiches that keep you going from breakfast to sunset.',
+      'DICKIES is a newly opened microbakery cafe in the heart of Sivota.',
+      'Every day we brew **illy espresso**, bake bread in small batches, blend fresh smoothies and juices, and put together light, bright plates of yoghurt and sandwiches that keep you going from breakfast to sunset.',
       "We're a daily place — for the early swim, the long lunch, the afternoon iced coffee. Pull up a chair, take your time. You're at your happy place.",
     ],
     pullQuote: 'Powered by coffee, driven by joy.',
@@ -112,17 +112,17 @@ const en: Dictionary = {
     eyebrow: 'Menu',
     title: 'Fresh made, all day.',
     subtitle:
-      'A short, considered menu that changes with the season. illy coffee, microbakery breads and bright Mediterranean staples.',
+      'A short, considered menu that changes with the season. illy coffee, microbakery breads and tasty Mediterranean flavours.',
     bannerAlt: 'Stack of DICKIES paper coffee cups with coffee beans.',
   },
   contact: {
     eyebrow: 'Visit us',
     title: 'Find DICKIES in Sivota.',
-    subtitle: 'Drop in any morning, stay through the afternoon. We are open daily from 7 to 19.',
+    subtitle: 'Drop in any morning, stay through the evening. We are open daily from 7 to 21.',
     locationLabel: 'Where',
     locationValue: 'Sivota, Greece',
     hoursLabel: 'Hours',
-    hoursValue: 'Open daily · 07:00 – 19:00',
+    hoursValue: 'Open daily · 07:00 – 21:00',
     phoneLabel: 'Phone',
     emailLabel: 'Email',
     instagramLabel: 'Instagram',
@@ -142,7 +142,7 @@ const el: Dictionary = {
   meta: {
     title: 'DICKIES Microbakery · Σύβοτα, Ελλάδα',
     description:
-      'Ένα νέο microbakery cafe στα Σύβοτα. Καφές illy, φρέσκο ψωμί, σάντουιτς, smoothies, χυμοί, φρουτοσαλάτες και γιαούρτι. Ανοιχτά καθημερινά 07:00 – 19:00.',
+      'Ένα νέο microbakery cafe στα Σύβοτα. Καφές illy, φρέσκο ψωμί, σάντουιτς, smoothies, χυμοί και γιαούρτι. Ανοιχτά καθημερινά 07:00 – 21:00.',
   },
   nav: {
     home: 'Αρχική',
@@ -164,17 +164,18 @@ const el: Dictionary = {
       'Ένα νέο microbakery cafe στην καρδιά των Συβότων, με καφέ illy, φρεσκοψημένο ψωμί, σάντουιτς, smoothies και φωτεινές προτάσεις όλη την ημέρα — από τις 7 το πρωί μέχρι τις 7 το απόγευμα.',
     primaryCta: 'Δες το μενού',
     secondaryCta: 'Γνώρισέ μας',
-    hoursBadge: 'Ανοιχτά 07:00 – 19:00',
+    hoursBadge: 'Ανοιχτά 07:00 – 21:00',
     locationBadge: 'Σύβοτα, Ελλάδα',
     imageAlt: 'Ένα χέρι ανοίγει κουτί με φρέσκα donuts του DICKIES.',
   },
   about: {
     eyebrow: 'Σχετικά',
-    title: 'Μικρό φούρνο, μεγάλο πρωινό.',
+    title: 'Small bakery big morning.',
     paragraphs: [
-      'Το DICKIES είναι ένα νέο microbakery cafe στην καρδιά των Συβότων — με καλό καφέ, τίμια υλικά και έναν ήρεμο, ηλιόλουστο ρυθμό.',
-      'Κάθε μέρα φτιάχνουμε illy espresso, ψήνουμε ψωμί σε μικρές παρτίδες, χτυπάμε φρέσκα smoothies και χυμούς και ετοιμάζουμε ελαφριά πιάτα με γιαούρτι, φρουτοσαλάτες και σάντουιτς που σε συντροφεύουν από το πρωινό μέχρι το ηλιοβασίλεμα.',
-      'Είμαστε εδώ καθημερινά — για το πρωινό μπάνιο, το μεσημεριανό, τον απογευματινό παγωμένο καφέ. Κάθισε άνετα, με την ησυχία σου. Είσαι στο χαρούμενο μέρος σου.',
+      'Το DICKIES είναι ένα νέο microbakery café στην καρδιά των Συβότων.',
+      'Κάθε μέρα φτιάχνουμε **illy espresso**, σερβίρουμε ψωμί σε μικρές παρτίδες, χτυπάμε φρέσκα smoothies και χυμούς και ετοιμάζουμε ελαφριά πιάτα με γιαούρτι και σάντουιτς που σε συντροφεύουν από το πρωινό μέχρι το ηλιοβασίλεμα.',
+      'Είμαστε εδώ καθημερινά — για το πρωινό μπάνιο, το μεσημεριανό, τον απογευματινό παγωμένο καφέ. Πάρε τον χρόνο σου. Βρες μια θέση στον ήλιο. Καλώς ήρθες στο χαρούμενο μέρος σου.',
+      'Πάρε τον χρόνο σου. Βρες μια θέση στον ήλιο. Καλώς ήρθες στο χαρούμενο μέρος σου.'
     ],
     pullQuote: 'Powered by coffee, driven by joy.',
     pullQuoteAttribution: '— the dickies',
@@ -182,31 +183,31 @@ const el: Dictionary = {
   },
   menu: {
     eyebrow: 'Μενού',
-    title: 'Επιμελημένο, φρέσκο, όλη μέρα.',
+    title: 'Φρέσκα, όλη μέρα.',
     subtitle:
-      'Ένα μικρό, μελετημένο μενού που αλλάζει με τις εποχές. Καφές illy, ψωμιά microbakery και φωτεινές μεσογειακές προτάσεις.',
+      'Ένα μικρό, μελετημένο μενού που αλλάζει με τις εποχές. Καφές illy, ψωμιά microbakery και φρέσκιες μεσογειακές προτάσεις.',
     bannerAlt: 'Στοίβα από κύπελλα καφέ DICKIES με κόκκους καφέ.',
   },
   contact: {
     eyebrow: 'Επισκέψου μας',
     title: 'Βρες το DICKIES στα Σύβοτα.',
-    subtitle: 'Πέρασε ένα πρωί, μείνε όλο το απόγευμα. Είμαστε ανοιχτά καθημερινά από τις επτά μέχρι τις επτά.',
+    subtitle: 'Ξεκίνα το πρωί σου εδώ και μείνε όσο θες μέχρι το βράδυ. Ανοιχτά κάθε μέρα 7:00–21:00.',
     locationLabel: 'Πού',
     locationValue: 'Σύβοτα, Ελλάδα',
     hoursLabel: 'Ώρες',
-    hoursValue: 'Ανοιχτά καθημερινά · 07:00 – 19:00',
+    hoursValue: 'Ανοιχτά καθημερινά · 07:00 – 21:00',
     phoneLabel: 'Τηλέφωνο',
     emailLabel: 'Email',
     instagramLabel: 'Instagram',
     whatsappLabel: 'WhatsApp',
     mapsCta: 'Άνοιγμα στους Χάρτες',
-    closingCtaTitle: 'Πιο πολύ από καφές — είναι το χαρούμενο μέρος σου.',
+    closingCtaTitle: 'Όχι απλώς καφές — το αγαπημένο σου μέρος.',
     closingCtaSubtitle: 'Σε περιμένουμε αύριο στις επτά.',
-    closingImageAlt: 'Οι μασκότ του DICKIES δίπλα στο σύνθημα: πιο πολύ από καφές — είναι το χαρούμενο μέρος σου.',
+    closingImageAlt: 'Οι μασκότ του DICKIES δίπλα στο σύνθημα: Όχι απλώς καφές — το αγαπημένο σου μέρος σου.',
   },
   footer: {
     rights: 'Με επιφύλαξη παντός δικαιώματος.',
-    crafted: 'Φτιαγμένο φρέσκο στα Σύβοτα.',
+    crafted: 'Φρέσκο από τα Σύβοτα.',
   },
 };
 

@@ -1,8 +1,11 @@
 // Business metadata, image-role map, and menu data for DICKIES Microbakery.
 //
-// IMPORTANT: Do not invent business facts. Phone, email, social handles, exact
-// street address and prices are intentionally left as `null` placeholders.
+// IMPORTANT: Do not invent business facts. Phone, email, social handles and the
+// exact street address are intentionally left as `null` placeholders.
 // Fill them in here when known and the UI will pick them up automatically.
+//
+// Menu prices are plain strings (currency identical in both languages). Adjust
+// them in the `menu` data below; the menu UI renders them automatically.
 
 export type Lang = 'en' | 'el';
 
@@ -12,12 +15,16 @@ export type MenuItem = {
   id: string;
   name: Localized;
   description?: Localized;
+  /** Display price, e.g. '€2.50'. Currency is identical across languages. */
+  price?: string;
 };
 
 export type MenuCategory = {
   id: string;
   name: Localized;
   note?: Localized;
+  /** Small caption shown at the bottom of the card, e.g. 'Take away'. */
+  footnote?: Localized;
   items: MenuItem[];
 };
 
@@ -38,7 +45,7 @@ export const site = {
     } satisfies Localized,
     secondaryTagline: {
       en: "More than coffee — it's your happy place.",
-      el: 'Πιο πολύ από καφές — είναι το χαρούμενο μέρος σου.',
+      el: 'Όχι απλώς καφές — το αγαπημένο σου μέρος.',
     } satisfies Localized,
   },
   location: {
@@ -50,7 +57,7 @@ export const site = {
   },
   hours: {
     open: '07:00',
-    close: '19:00',
+    close: '21:00',
     daysLabel: {
       en: 'Open daily',
       el: 'Ανοιχτά καθημερινά',
@@ -94,7 +101,7 @@ export const site = {
 // Menu
 // ---------------------------------------------------------------------------
 //
-// Categories follow the brief: Coffee (illy), Fruit salads, Yoghurt, Sandwiches,
+// Categories follow the brief: Coffee (illy), Yoghurt, Sandwiches,
 // Fresh smoothies, Fresh juices. Items are intentionally curated and concise.
 
 export const menu: MenuCategory[] = [
@@ -102,62 +109,47 @@ export const menu: MenuCategory[] = [
     id: 'coffee',
     name: { en: 'Coffee', el: 'Καφές' },
     note: { en: 'Brewed with illy', el: 'Με illy' },
+    footnote: { en: 'Take away', el: 'Take away' },
     items: [
-      { id: 'espresso', name: { en: 'Espresso', el: 'Εσπρέσσο' } },
-      { id: 'double-espresso', name: { en: 'Double espresso', el: 'Διπλός εσπρέσσο' } },
-      { id: 'americano', name: { en: 'Americano', el: 'Αμερικάνο' } },
-      { id: 'cappuccino', name: { en: 'Cappuccino', el: 'Καπουτσίνο' } },
-      { id: 'flat-white', name: { en: 'Flat white', el: 'Flat white' } },
-      { id: 'latte', name: { en: 'Latte', el: 'Λάτε' } },
-      { id: 'freddo-espresso', name: { en: 'Freddo espresso', el: 'Φρέντο εσπρέσσο' } },
-      { id: 'freddo-cappuccino', name: { en: 'Freddo cappuccino', el: 'Φρέντο καπουτσίνο' } },
+      { id: 'espresso', name: { en: 'Espresso', el: 'Εσπρέσσο' }, price: '€ 2.20' },
+      { id: 'double-espresso', name: { en: 'Double espresso', el: 'Διπλό εσπρέσσο' }, price: '€ 2.50' },
+      { id: 'flat-white', name: { en: 'Flat white', el: 'Flat white' }, price: '€ 2.80' },
+      { id: 'cappuccino', name: { en: 'Cappuccino', el: 'Διπλό Καπουτσίνο' }, price: '€ 3.00' },
+      { id: 'double-cappuccino', name: { en: 'Dobule Cappuccino', el: 'Καπουτσίνο' }, price: '€ 2.50' },
+      { id: 'latte', name: { en: 'Latte', el: 'Λάτε' }, price: '€ 2.80' },
+      { id: 'freddo-espresso', name: { en: 'Freddo Espresso', el: 'Φρέντο εσπρέσσο' }, price: '€ 2.50' },
+      { id: 'freddo-espresso-xl', name: { en: 'Freddo Espresso XL', el: 'Φρέντο εσπρέσσο XL' }, price: '€ 3.50' },
+      { id: 'freddo-cappuccino', name: { en: 'Freddo cappuccino', el: 'Φρέντο καπουτσίνο' }, price: '€ 2.80' },
+      { id: 'filter', name: { en: 'Filter (French coffee)', el: 'Γαλλικός' }, price: '€ 2.50' },
+      { id: 'french', name: { en: 'Frape', el: 'Γαλλικός' }, price: '€ 2.50' },
+      { id: 'greek-single', name: { en: 'Greek Coffee Single', el: 'Ελληνικός μονός' }, price: '€ 2.00' },
+      { id: 'greek-double', name: { en: 'Greek Coffee Double', el: 'Ελληνικός διπλός' }, price: '€ 2.50' },
+      { id: 'almond-milk', name: { en: 'Almond / Oat Milk', el: 'Γάλα αμυγδάλου / βρώμης' }, price: '+ € 0.50' },
     ],
   },
   {
     id: 'sandwiches',
     name: { en: 'Sandwiches', el: 'Σάντουιτς' },
-    note: {
-      en: 'On fresh microbakery bread',
-      el: 'Σε φρέσκο ψωμί microbakery',
-    },
     items: [
       {
         id: 'classic',
         name: { en: 'Classic ham & cheese', el: 'Κλασικό ζαμπόν & τυρί' },
+        price: '€4.50',
       },
       {
         id: 'turkey',
         name: { en: 'Smoked turkey', el: 'Καπνιστή γαλοπούλα' },
+        price: '€5.00',
       },
       {
         id: 'caprese',
         name: { en: 'Tomato, mozzarella & basil', el: 'Ντομάτα, μοτσαρέλα & βασιλικός' },
+        price: '€4.80',
       },
       {
         id: 'veggie',
         name: { en: 'Garden vegetable', el: 'Λαχανικών κήπου' },
-      },
-    ],
-  },
-  {
-    id: 'fruit-salads',
-    name: { en: 'Fruit salads', el: 'Φρουτοσαλάτες' },
-    items: [
-      {
-        id: 'seasonal',
-        name: { en: 'Seasonal mix', el: 'Μείγμα εποχής' },
-        description: {
-          en: 'Whatever is best at the market today.',
-          el: 'Ό,τι καλύτερο έχει σήμερα η αγορά.',
-        },
-      },
-      {
-        id: 'tropical',
-        name: { en: 'Tropical', el: 'Τροπική' },
-      },
-      {
-        id: 'berry',
-        name: { en: 'Berries & honey', el: 'Φρούτα του δάσους & μέλι' },
+        price: '€4.50',
       },
     ],
   },
@@ -168,10 +160,12 @@ export const menu: MenuCategory[] = [
       {
         id: 'greek-honey',
         name: { en: 'Greek yoghurt with honey & walnuts', el: 'Γιαούρτι με μέλι & καρύδια' },
+        price: '€4.50',
       },
       {
         id: 'granola',
         name: { en: 'Yoghurt with granola & berries', el: 'Γιαούρτι με γκρανόλα & φρούτα του δάσους' },
+        price: '€5.00',
       },
     ],
   },
@@ -186,6 +180,7 @@ export const menu: MenuCategory[] = [
           en: 'Spinach, banana, apple, lemon.',
           el: 'Σπανάκι, μπανάνα, μήλο, λεμόνι.',
         },
+        price: '€4.50',
       },
       {
         id: 'berry',
@@ -194,6 +189,7 @@ export const menu: MenuCategory[] = [
           en: 'Mixed berries, banana, yoghurt.',
           el: 'Μείγμα μούρων, μπανάνα, γιαούρτι.',
         },
+        price: '€4.50',
       },
       {
         id: 'tropical',
@@ -202,6 +198,7 @@ export const menu: MenuCategory[] = [
           en: 'Mango, pineapple, orange.',
           el: 'Μάνγκο, ανανάς, πορτοκάλι.',
         },
+        price: '€4.50',
       },
     ],
   },
@@ -209,8 +206,8 @@ export const menu: MenuCategory[] = [
     id: 'juices',
     name: { en: 'Fresh juices', el: 'Φρέσκοι χυμοί' },
     items: [
-      { id: 'orange', name: { en: 'Orange', el: 'Πορτοκάλι' } },
-      { id: 'grapefruit', name: { en: 'Grapefruit', el: 'Γκρέιπφρουτ' } },
+      { id: 'orange', name: { en: 'Orange', el: 'Πορτοκάλι' }, price: '€3.50' },
+      { id: 'grapefruit', name: { en: 'Grapefruit', el: 'Γκρέιπφρουτ' }, price: '€3.50' },
       {
         id: 'detox',
         name: { en: 'Detox', el: 'Detox' },
@@ -218,6 +215,7 @@ export const menu: MenuCategory[] = [
           en: 'Apple, carrot, ginger, lemon.',
           el: 'Μήλο, καρότο, τζίντζερ, λεμόνι.',
         },
+        price: '€4.00',
       },
     ],
   },

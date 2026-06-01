@@ -71,9 +71,16 @@ const el = translations.el.menu;
               <ul class="mt-5 space-y-3">
                 {cat.items.map((item) => (
                   <li>
-                    <p class="font-sans text-base font-medium text-darkGreen">
-                      <Bilingual en={item.name.en} el={item.name.el} />
-                    </p>
+                    <div class="flex items-baseline justify-between gap-4">
+                      <p class="font-sans text-base font-medium text-darkGreen">
+                        <Bilingual en={item.name.en} el={item.name.el} />
+                      </p>
+                      {item.price && (
+                        <span class="shrink-0 font-sans text-base font-medium text-darkGreen">
+                          {item.price}
+                        </span>
+                      )}
+                    </div>
                     {item.description && (
                       <p class="mt-0.5 font-sans text-sm text-darkGreen/65">
                         <Bilingual en={item.description.en} el={item.description.el} />
@@ -82,6 +89,12 @@ const el = translations.el.menu;
                   </li>
                 ))}
               </ul>
+
+              {cat.footnote && (
+                <p class="mt-auto pt-6 font-sans text-[11px] uppercase tracking-brand text-forestMoss">
+                  <Bilingual en={cat.footnote.en} el={cat.footnote.el} />
+                </p>
+              )}
             </article>
           ))
         }
@@ -89,8 +102,8 @@ const el = translations.el.menu;
 
       <p class="mt-10 max-w-prose font-sans text-sm text-darkGreen/65">
         <Bilingual
-          en="Selection rotates with the season. Coffee is brewed exclusively with illy beans."
-          el="Η επιλογή αλλάζει ανάλογα με την εποχή. Ο καφές παρασκευάζεται αποκλειστικά με κόκκους illy."
+          en="We use fresh seasonal fruits, dpeneding on availability . Coffee is brewed exclusively with **illy beans**  ."
+          el="Χρησιμοποιούμε φρέσκα φρούτα εποχής, ανάλογα με τη διαθεσιμότητα. Ο καφές παρασκευάζεται αποκλειστικά με κόκκους **illy**."
         />
       </p>
     </div>

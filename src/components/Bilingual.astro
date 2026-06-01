@@ -2,6 +2,11 @@
 // Renders the EN and EL string side-by-side, wrapped in [data-lang] spans.
 // Only the active one is visible (CSS rule in global.css).
 //
+// Wrap any part of a string in **double asterisks** to make it bold, e.g.
+//   'Every day we brew **illy espresso**, bake bread...'
+// The text stays plain in translations.ts — no HTML required — and Astro still
+// escapes it, so this is safe.
+//
 // Usage:
 //   <Bilingual en="Home" el="Αρχική" />
 //   <Bilingual en="Foo" el="Bar" tag="h1" class="display-h1" />
@@ -16,8 +21,15 @@ type Props = {
 };
 
 const { en, el, tag: Tag = 'span', class: className } = Astro.props;
+
+// Split on **...** markers. Even indices are plain text, odd indices are bold.
+const toParts = (text: string) => text.split(/\*\*(.+?)\*\*/g);
 ---
 
 <Tag class={className}>
-  <span data-lang="en">{en}</span><span data-lang="el">{el}</span>
+  <span data-lang="en">{
+    toParts(en).map((part, i) => (i % 2 === 1 ? <strong>{part}</strong> : part))
+  }</span><span data-lang="el">{
+    toParts(el).map((part, i) => (i % 2 === 1 ? <strong>{part}</strong> : part))
+  }</span>
 </Tag>

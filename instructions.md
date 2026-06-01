@@ -169,7 +169,6 @@ Purpose:
 
 Expected categories:
 - Coffee (explicitly mention illy brand)
-- Fruit salads
 - Yoghurt
 - Sandwiches
 - Fresh smoothies
