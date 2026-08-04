@@ -45,7 +45,7 @@ export const site = {
     } satisfies Localized,
     secondaryTagline: {
       en: "More than coffee — it's your happy place.",
-      el: 'Όχι απλώς καφές — το αγαπημένο σου μέρος.',
+      el: 'Όχι απλώς καφές — το happy place σου.',
     } satisfies Localized,
   },
   location: {
@@ -53,7 +53,7 @@ export const site = {
     region: 'Greece',
     /** Set when known. Avoid placeholders in UI; the field is rendered conditionally. */
     address: null as string | null,
-    mapsUrl: 'https://maps.app.goo.gl/1QKUrkRNVpG2wLM67',
+    mapsUrl: 'https://maps.app.goo.gl/wWpwvF8X3TDqLER46',
   },
   hours: {
     open: '07:00',
@@ -68,10 +68,9 @@ export const site = {
     email: null as string | null,
   },
   social: {
-    // TODO: replace with the actual Instagram profile URL once the handle is confirmed.
-    instagram: { url: 'https://www.instagram.com/', handle: null } satisfies SocialLink,
-    // WhatsApp click-to-chat derived from the phone number above.
-    whatsapp: { url: 'https://wa.me/302665023232', handle: null } satisfies SocialLink,
+    instagram: { url: 'https://www.instagram.com/dickies.sivota/', handle: 'dickies.sivota' } satisfies SocialLink,
+    // WhatsApp click-to-chat for +30 694 084 4761.
+    whatsapp: { url: 'https://wa.me/306940844761', handle: null } satisfies SocialLink,
   },
   /**
    * Image role map. Each role points to a file already present in `public/images/`.
@@ -109,22 +108,63 @@ export const menu: MenuCategory[] = [
     id: 'coffee',
     name: { en: 'Coffee', el: 'Καφές' },
     note: { en: 'Brewed with illy', el: 'Με illy' },
-    footnote: { en: 'Take away', el: 'Take away' },
+    footnote: { en: '**Take away**', el: '**Take away**' },
     items: [
       { id: 'espresso', name: { en: 'Espresso', el: 'Εσπρέσσο' }, price: '€ 2.20' },
       { id: 'double-espresso', name: { en: 'Double espresso', el: 'Διπλό εσπρέσσο' }, price: '€ 2.50' },
       { id: 'flat-white', name: { en: 'Flat white', el: 'Flat white' }, price: '€ 2.80' },
-      { id: 'cappuccino', name: { en: 'Cappuccino', el: 'Διπλό Καπουτσίνο' }, price: '€ 3.00' },
-      { id: 'double-cappuccino', name: { en: 'Dobule Cappuccino', el: 'Καπουτσίνο' }, price: '€ 2.50' },
+      { id: 'cappuccino', name: { en: 'Cappuccino', el: 'Διπλό Καπουτσίνο' }, price: '€ 2.50' },
+      { id: 'double-cappuccino', name: { en: 'Dobule Cappuccino', el: 'Καπουτσίνο' }, price: '€ 3.00' },
       { id: 'latte', name: { en: 'Latte', el: 'Λάτε' }, price: '€ 2.80' },
       { id: 'freddo-espresso', name: { en: 'Freddo Espresso', el: 'Φρέντο εσπρέσσο' }, price: '€ 2.50' },
       { id: 'freddo-espresso-xl', name: { en: 'Freddo Espresso XL', el: 'Φρέντο εσπρέσσο XL' }, price: '€ 3.50' },
       { id: 'freddo-cappuccino', name: { en: 'Freddo cappuccino', el: 'Φρέντο καπουτσίνο' }, price: '€ 2.80' },
       { id: 'filter', name: { en: 'Filter (French coffee)', el: 'Γαλλικός' }, price: '€ 2.50' },
-      { id: 'french', name: { en: 'Frape', el: 'Γαλλικός' }, price: '€ 2.50' },
+      { id: 'french', name: { en: 'Frape', el: 'Φραπέ' }, price: '€ 2.50' },
       { id: 'greek-single', name: { en: 'Greek Coffee Single', el: 'Ελληνικός μονός' }, price: '€ 2.00' },
       { id: 'greek-double', name: { en: 'Greek Coffee Double', el: 'Ελληνικός διπλός' }, price: '€ 2.50' },
       { id: 'almond-milk', name: { en: 'Almond / Oat Milk', el: 'Γάλα αμυγδάλου / βρώμης' }, price: '+ € 0.50' },
+    ],
+  },
+  {
+    id: 'not-coffee',
+    name: { en: 'Not Coffee', el: 'Not Coffee' },
+    items: [
+      {
+        id: 'chocolate',
+        name: { en: 'Chocolate', el: 'Σοκολάτα' },
+        price: '€3.00',
+      },
+      {
+        id: 'white-chocolate',
+        name: { en: 'White Chocolate', el: 'Λευκή Σοκολάτα' },
+        price: '€3.00',
+      },
+      {
+        id: 'soft-drinks',
+        name: { en: 'Soft Drinks', el: 'Αναψυκτικά' },
+        price: '€2.00',
+      },
+      {
+        id: 'milk',
+        name: { en: 'Milk', el: 'Γάλα' },
+        price: '€2.50',
+      },
+      {
+        id: 'orange-juice',
+        name: { en: 'Natural Orange Juice', el: 'Φυσικός Χυμός Πορτοκάλι' },
+        price: '€3.00',
+      },
+      {
+        id: 'water-500ml',
+        name: { en: 'Still Water 0.5 Liters', el: 'Νερό 0.5 λίτρο' },
+        price: '€0.50',
+      },
+      {
+        id: 'water-1500ml',
+        name: { en: 'Still Water 1.5 Liters', el: 'Νερό 1.5 λίτρο' },
+        price: '€1.00',
+      },
     ],
   },
   {
@@ -132,93 +172,23 @@ export const menu: MenuCategory[] = [
     name: { en: 'Sandwiches', el: 'Σάντουιτς' },
     items: [
       {
-        id: 'classic',
-        name: { en: 'Classic ham & cheese', el: 'Κλασικό ζαμπόν & τυρί' },
-        price: '€4.50',
+        id: 'chiabatta',
+        name: { en: 'Ciabatta With Fouantre Turkey, Cream Cheese, Gouda Cheese, Tomato', el: 'Τσιαμπάτα με Φουαντρέ Γαλοπούλα, Τυρί Κρέμα, Gouda, Ντομάτα' }
       },
       {
-        id: 'turkey',
-        name: { en: 'Smoked turkey', el: 'Καπνιστή γαλοπούλα' },
-        price: '€5.00',
+        id: 'panini',
+        name: { en: 'Panini With Apaki (Cretan Smoked Chicen), Graviera Cheese, Honey Mustard Sauce, Lettuce', el: 'Πανινί με Απάκι, Γραβιέρα, Σως Μουστάρδα, Μέλι, Μαρούλι' }
       },
       {
-        id: 'caprese',
-        name: { en: 'Tomato, mozzarella & basil', el: 'Ντομάτα, μοτσαρέλα & βασιλικός' },
-        price: '€4.80',
+        id: 'whole-wheat-bread',
+        name: { en: 'Whole Wheat Bread With Feta Cheese, Tomato, Olives, Cucumber, Olive Oil, Oregano', el: 'Ολικής με Τυρί Φέτα, Ντομάτα, Ελιές, Λάδο, Ρίγανη' },
       },
       {
-        id: 'veggie',
-        name: { en: 'Garden vegetable', el: 'Λαχανικών κήπου' },
-        price: '€4.50',
+        id: 'Foccacia',
+        name: { en: 'Foccacia with Pesto, Mozzarella, Mortadella, Tomato, Rocket Salad', el: 'Foccacia με Πεστό, Μοτσαρέλα, Μορταδέλα, Ντομάτα, Ρόκα' },
       },
     ],
-  },
-  {
-    id: 'yoghurt',
-    name: { en: 'Yoghurt', el: 'Γιαούρτι' },
-    items: [
-      {
-        id: 'greek-honey',
-        name: { en: 'Greek yoghurt with honey & walnuts', el: 'Γιαούρτι με μέλι & καρύδια' },
-        price: '€4.50',
-      },
-      {
-        id: 'granola',
-        name: { en: 'Yoghurt with granola & berries', el: 'Γιαούρτι με γκρανόλα & φρούτα του δάσους' },
-        price: '€5.00',
-      },
-    ],
-  },
-  {
-    id: 'smoothies',
-    name: { en: 'Fresh smoothies', el: 'Φρέσκα smoothies' },
-    items: [
-      {
-        id: 'green',
-        name: { en: 'Green morning', el: 'Πράσινο πρωινό' },
-        description: {
-          en: 'Spinach, banana, apple, lemon.',
-          el: 'Σπανάκι, μπανάνα, μήλο, λεμόνι.',
-        },
-        price: '€4.50',
-      },
-      {
-        id: 'berry',
-        name: { en: 'Berry boost', el: 'Berry boost' },
-        description: {
-          en: 'Mixed berries, banana, yoghurt.',
-          el: 'Μείγμα μούρων, μπανάνα, γιαούρτι.',
-        },
-        price: '€4.50',
-      },
-      {
-        id: 'tropical',
-        name: { en: 'Sunny tropical', el: 'Τροπικό' },
-        description: {
-          en: 'Mango, pineapple, orange.',
-          el: 'Μάνγκο, ανανάς, πορτοκάλι.',
-        },
-        price: '€4.50',
-      },
-    ],
-  },
-  {
-    id: 'juices',
-    name: { en: 'Fresh juices', el: 'Φρέσκοι χυμοί' },
-    items: [
-      { id: 'orange', name: { en: 'Orange', el: 'Πορτοκάλι' }, price: '€3.50' },
-      { id: 'grapefruit', name: { en: 'Grapefruit', el: 'Γκρέιπφρουτ' }, price: '€3.50' },
-      {
-        id: 'detox',
-        name: { en: 'Detox', el: 'Detox' },
-        description: {
-          en: 'Apple, carrot, ginger, lemon.',
-          el: 'Μήλο, καρότο, τζίντζερ, λεμόνι.',
-        },
-        price: '€4.00',
-      },
-    ],
-  },
+  }
 ];
 
 // ---------------------------------------------------------------------------
