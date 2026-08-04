@@ -120,7 +120,7 @@ export const menu: MenuCategory[] = [
       { id: 'freddo-espresso-xl', name: { en: 'Freddo Espresso XL', el: 'Φρέντο εσπρέσσο XL' }, price: '€ 3.50' },
       { id: 'freddo-cappuccino', name: { en: 'Freddo cappuccino', el: 'Φρέντο καπουτσίνο' }, price: '€ 2.80' },
       { id: 'filter', name: { en: 'Filter (French coffee)', el: 'Γαλλικός' }, price: '€ 2.50' },
-      { id: 'french', name: { en: 'Frape', el: 'Φραπέ' }, price: '€ 2.50' },
+      { id: 'french', name: { en: 'Frape', el: 'Φραπές' }, price: '€ 2.50' },
       { id: 'greek-single', name: { en: 'Greek Coffee Single', el: 'Ελληνικός μονός' }, price: '€ 2.00' },
       { id: 'greek-double', name: { en: 'Greek Coffee Double', el: 'Ελληνικός διπλός' }, price: '€ 2.50' },
       { id: 'almond-milk', name: { en: 'Almond / Oat Milk', el: 'Γάλα αμυγδάλου / βρώμης' }, price: '+ € 0.50' },
